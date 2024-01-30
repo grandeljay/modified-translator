@@ -12,7 +12,7 @@ namespace Grandeljay\Translator;
 
 class Translations
 {
-    private array $translations = array();
+    private array $translations = [];
     private string $moduleName  = '';
     private string $language;
 
