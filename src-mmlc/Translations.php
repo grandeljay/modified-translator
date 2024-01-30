@@ -37,7 +37,11 @@ class Translations
         $moduleType        = \strtoupper($paths[3]);
         $moduleFileName    = \strtoupper(\pathinfo($paths[4], \PATHINFO_FILENAME));
 
-        $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileName);
+        if (\str_contains($moduleFileName, $moduleType)) {
+            $this->moduleName = \sprintf('MODULE_%s', $moduleFileName);
+        } else {
+            $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileName);
+        }
     }
 
     private function setDefaultTranslations(): void
