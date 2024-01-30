@@ -38,10 +38,16 @@ class Translations
         $moduleType        = \strtoupper($paths[3]);
         $moduleFileName    = \strtoupper(\pathinfo($paths[4], \PATHINFO_FILENAME));
 
-        if (\str_contains($moduleFileName, $moduleType)) {
-            $this->moduleName = \sprintf('MODULE_%s', $moduleFileName);
-        } else {
-            $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileName);
+        switch ($moduleType) {
+            case 'PRODUCT':
+                $moduleFileNameWithoutType = \str_replace('_' . $moduleType, '', $moduleFileName);
+
+                $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileNameWithoutType);
+                break;
+
+            default:
+                $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileName);
+                break;
         }
     }
 
