@@ -43,7 +43,7 @@ class Translations
             case 'PRODUCT':
                 $moduleFileNameWithoutType = \str_replace('_' . $moduleType, '', $moduleFileName);
 
-                $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileNameWithoutType);
+                $this->moduleName = \sprintf('MODULE_%1$s_%2$s_%1$s', $moduleType, $moduleFileNameWithoutType);
                 break;
 
             default:
