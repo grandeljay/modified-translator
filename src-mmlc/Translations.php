@@ -39,6 +39,7 @@ class Translations
         $moduleFileName    = \strtoupper(\pathinfo($paths[4], \PATHINFO_FILENAME));
 
         switch ($moduleType) {
+            case 'CATEGORIES':
             case 'PRODUCT':
                 $moduleFileNameWithoutType = \str_replace('_' . $moduleType, '', $moduleFileName);
 
