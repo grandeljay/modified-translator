@@ -13,13 +13,17 @@ namespace Grandeljay\Translator;
 class Translations
 {
     private array $translations = [];
-    private string $moduleName  = '';
     private string $language;
 
-    public function __construct(private string $languageFilepath)
+    /**
+     * Constructor
+     *
+     * @param string $languageFilepath The filepath, defining the translations.
+     * @param string $moduleName       The module name, as a constant.
+     */
+    public function __construct(private string $languageFilepath, private string $moduleName)
     {
         $this->setLanguage();
-        $this->setModuleName();
         $this->setDefaultTranslations();
     }
 
@@ -29,28 +33,6 @@ class Translations
         $paths             = \explode(\DIRECTORY_SEPARATOR, $directoryRelative);
 
         $this->language = \strtolower($paths[1]);
-    }
-
-    private function setModuleName(): void
-    {
-        $directoryRelative = \substr($this->languageFilepath, \mb_strlen(\DIR_FS_CATALOG));
-        $paths             = \explode(\DIRECTORY_SEPARATOR, $directoryRelative);
-        $moduleType        = \strtoupper($paths[3]);
-        $moduleFileName    = \strtoupper(\pathinfo($paths[4], \PATHINFO_FILENAME));
-
-        switch ($moduleType) {
-            case 'CATEGORIES':
-            case 'PRODUCT':
-            case 'SHOPPING_CART':
-                $moduleFileNameWithoutType = \str_replace('_' . $moduleType, '', $moduleFileName);
-
-                $this->moduleName = \sprintf('MODULE_%1$s_%2$s_%1$s', $moduleType, $moduleFileNameWithoutType);
-                break;
-
-            default:
-                $this->moduleName = \sprintf('MODULE_%s_%s', $moduleType, $moduleFileName);
-                break;
-        }
     }
 
     private function setDefaultTranslations(): void
