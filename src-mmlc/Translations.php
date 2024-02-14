@@ -3,7 +3,7 @@
 /**
  * Translations
  *
- * @version 0.3.0
+ * @version 0.3.1
  * @author  Jay Trees <translations@grandels.email>
  * @link    https://github.com/grandeljay/modified-translator
  */
