@@ -30,7 +30,7 @@ class Translations
     private function setLanguage(): void
     {
         $directoryRelative = \substr($this->languageFilepath, \mb_strlen(\DIR_FS_CATALOG));
-        $paths             = \explode(\DIRECTORY_SEPARATOR, $directoryRelative);
+        $paths             = \preg_split('/\\\|\//', $directoryRelative);
 
         $this->language = \strtolower($paths[1]);
     }
