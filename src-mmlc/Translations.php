@@ -83,6 +83,6 @@ class Translations
 
     public function get(string $key): string
     {
-        return $this->translations[$key];
+        return $this->translations[$key] ?? $key;
     }
 }
